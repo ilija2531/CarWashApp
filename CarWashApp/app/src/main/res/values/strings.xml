@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">CarWashApp</string>
+
+    <string-array name="roles_array">
+        <item>Изберете улога</item>
+        <item>Клиент</item>
+        <item>Вработен</item>
+    </string-array>
+
 </resources>

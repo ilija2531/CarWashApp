@@ -27,6 +27,10 @@
             android:theme="@style/Theme.CarWashApp">
         </activity>
 
+        <activity android:name=".dashboards.ClientDashboardActivity" />
+        <activity android:name=".dashboards.EmployeeDashboardActivity" />
+
+
     </application>
 
 </manifest>
