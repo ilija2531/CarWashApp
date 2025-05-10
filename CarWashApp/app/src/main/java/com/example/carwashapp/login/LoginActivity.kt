@@ -2,55 +2,45 @@ package com.example.carwashapp.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.carwashapp.databinding.ActivityLoginBinding
-import com.example.carwashapp.dashboards.EmployeeDashboardActivity
+import com.example.carwashapp.R
 import com.example.carwashapp.dashboards.ClientDashboardActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_login)
 
         auth = FirebaseAuth.getInstance()
 
-        binding.loginButton.setOnClickListener {
-            val email = binding.emailEditText.text.toString().trim()
-            val password = binding.passwordEditText.text.toString().trim()
+        val emailEt = findViewById<EditText>(R.id.emailEditText)
+        val passwordEt = findViewById<EditText>(R.id.passwordEditText)
+        val loginBtn = findViewById<Button>(R.id.loginButton)
 
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                auth.signInWithEmailAndPassword(email, password)
-                    .addOnSuccessListener {
-                        val uid = auth.currentUser?.uid
-                        if (uid != null) {
-                            Firebase.firestore.collection("users").document(uid)
-                                .get()
-                                .addOnSuccessListener { document ->
-                                    val role = document.getString("role")
-                                    when (role) {
-                                        "employee" -> startActivity(Intent(this, EmployeeDashboardActivity::class.java))
-                                        "client" -> startActivity(Intent(this, ClientDashboardActivity::class.java))
-                                        else -> Toast.makeText(this, "Улогата не е препознаена", Toast.LENGTH_SHORT).show()
-                                    }
-                                    finish()
-                                }
-                        }
-                    }
-                    .addOnFailureListener {
-                        Toast.makeText(this, "Најавата не успеа: ${it.message}", Toast.LENGTH_SHORT).show()
-                    }
-            } else {
-                Toast.makeText(this, "Внесете емаил и лозинка", Toast.LENGTH_SHORT).show()
+        loginBtn.setOnClickListener {
+            val email = emailEt.text.toString().trim()
+            val password = passwordEt.text.toString().trim()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Пополнете ги сите полиња", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(this, "Успешна најава", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, ClientDashboardActivity::class.java))
+                        finish()
+                    } else {
+                        Toast.makeText(this, "Неуспешна најава: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                    }
+                }
         }
     }
 }

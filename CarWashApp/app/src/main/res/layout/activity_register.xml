@@ -6,28 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <RadioGroup
-        android:id="@+id/roleRadioGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp">
 
-        <RadioButton
-            android:id="@+id/radioClient"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Клиент"
-            tools:ignore="TouchTargetSizeCheck" />
-
-        <RadioButton
-            android:id="@+id/radioEmployee"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Вработен"
-            tools:ignore="TouchTargetSizeCheck" />
-    </RadioGroup>
 
     <EditText
         android:id="@+id/etEmail"
