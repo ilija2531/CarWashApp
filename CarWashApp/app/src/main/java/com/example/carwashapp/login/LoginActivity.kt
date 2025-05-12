@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.carwashapp.R
 import com.example.carwashapp.dashboards.ClientDashboardActivity
 import com.google.firebase.auth.FirebaseAuth
-
+import com.example.carwashapp.welcome.WelcomeActivity
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
