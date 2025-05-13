@@ -23,9 +23,9 @@ class MainActivity : AppCompatActivity() {
 
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_home -> loadFragment(HomeFragment())
-                R.id.nav_book -> loadFragment(BookFragment())
-                R.id.nav_profile -> loadFragment(ProfileFragment())
+                R.id.homeFragment -> loadFragment(HomeFragment())
+                R.id.bookFragment -> loadFragment(BookFragment())
+                R.id.profileFragment -> loadFragment(ProfileFragment())
             }
             true
         }

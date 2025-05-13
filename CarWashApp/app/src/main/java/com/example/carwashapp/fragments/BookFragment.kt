@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.*
+import com.example.carwashapp.model.Booking
 
 class BookFragment : Fragment(R.layout.fragment_book) {
 
@@ -77,9 +78,11 @@ class BookFragment : Fragment(R.layout.fragment_book) {
                 .addOnSuccessListener {
                     Toast.makeText(requireContext(), "Резервацијата е успешно снимена", Toast.LENGTH_SHORT).show()
                 }
-                .addOnFailureListener {
-                    Toast.makeText(requireContext(), "Грешка при резервација", Toast.LENGTH_SHORT).show()
+                .addOnFailureListener { e ->
+                    e.printStackTrace()
+                    Toast.makeText(requireContext(), "Грешка при резервација: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
                 }
+
         }
     }
 }
