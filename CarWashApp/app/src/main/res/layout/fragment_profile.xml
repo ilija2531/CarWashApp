@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:orientation="vertical"
+    android:padding="24dp"
+    tools:context=".fragments.ProfileFragment">
+
 
     <TextView
+        android:id="@+id/txtProfileTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Профил"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp" />
+
+
+    <Spinner
+        android:id="@+id/spinnerLanguage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:ignore="VisualLintOverlap" />
+        android:layout_gravity="end"
+        android:layout_marginBottom="16dp"
+        android:minHeight="48dp" />
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/txtMyBookings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Мои резервации"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerBookings"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="50dp"
-        tools:ignore="RedundantNamespace">
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-        <TextView
-            android:text="Мои резервации"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerBookings"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:layout_marginTop="16dp"
-            android:text="Одјави се"
-            android:textColorHint="#0000"
-            />
-
-    </LinearLayout>
-
-</FrameLayout>
+</LinearLayout>

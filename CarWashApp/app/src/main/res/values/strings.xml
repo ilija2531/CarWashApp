@@ -1,10 +1,13 @@
 <resources>
-    <string name="app_name">CarWashApp</string>
-
-    <string-array name="roles_array">
-        <item>Изберете улога</item>
-        <item>Клиент</item>
-        <item>Вработен</item>
-    </string-array>
+    <string name="app_name">CarWash</string>
+    <string name="logout">Logout</string>
+    <string name="error_loading">Error loading bookings</string>
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
+    <string name="book">Book</string>
+    <string name="language">Language</string>
+    <string name="select_language">Select Language</string>
+    <string name="english">English</string>
+    <string name="macedonian">Macedonian</string>
 
 </resources>
