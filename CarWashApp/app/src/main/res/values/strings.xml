@@ -9,5 +9,10 @@
     <string name="select_language">Select Language</string>
     <string name="english">English</string>
     <string name="macedonian">Macedonian</string>
+    <string name="booking_fetch_error">Error loading bookings</string>
+    <string name="no_bookings">No bookings</string>
+    <string name="bookings_updated">Bookings updated</string>
+    <string name="default_web_client_id">YOUR_WEB_CLIENT_ID</string>
+
 
 </resources>

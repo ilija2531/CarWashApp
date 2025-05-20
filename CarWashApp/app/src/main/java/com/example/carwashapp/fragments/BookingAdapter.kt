@@ -1,5 +1,3 @@
-package com.example.carwashapp.fragments
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +5,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carwashapp.R
 import com.example.carwashapp.model.Booking
-
 
 class BookingAdapter(private val bookings: List<Booking>) :
     RecyclerView.Adapter<BookingAdapter.BookingViewHolder>() {

@@ -11,12 +11,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.*
-import com.example.carwashapp.model.Booking
-import androidx.lifecycle.lifecycleScope
-import com.example.carwashapp.data.BookingDatabase
-import com.example.carwashapp.data.BookingEntity
-import kotlinx.coroutines.launch
-
 
 class BookFragment : Fragment(R.layout.fragment_book) {
 
@@ -58,8 +52,6 @@ class BookFragment : Fragment(R.layout.fragment_book) {
                 calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true)
             timePicker.show()
         }
-        val bookingDb = BookingDatabase.getDatabase(requireContext())
-        val bookingDao = bookingDb.bookingDao()
 
         submitButton.setOnClickListener {
             val vehicleType = spinner.selectedItem.toString()
@@ -84,24 +76,10 @@ class BookFragment : Fragment(R.layout.fragment_book) {
                 .add(booking)
                 .addOnSuccessListener {
                     Toast.makeText(requireContext(), "Резервацијата е успешно снимена", Toast.LENGTH_SHORT).show()
-                    lifecycleScope.launch {
-                        val bookingEntity = BookingEntity(
-                            userId = userId,
-                            date = selectedDate,
-                            time = selectedTime,
-                            vehicleType = vehicleType,
-                            note = note,
-                            timestamp = System.currentTimeMillis()
-                        )
-                        bookingDao.insertBooking(bookingEntity)
-                    }
-
                 }
-                .addOnFailureListener { e ->
-                    e.printStackTrace()
-                    Toast.makeText(requireContext(), "Грешка при резервација: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
+                .addOnFailureListener {
+                    Toast.makeText(requireContext(), "Грешка при резервација", Toast.LENGTH_SHORT).show()
                 }
-
         }
     }
 }

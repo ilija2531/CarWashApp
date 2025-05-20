@@ -10,5 +10,9 @@
     <string name="select_language">Избери јазик</string>
     <string name="english">Англиски</string>
     <string name="macedonian">Македонски</string>
+    <string name="booking_fetch_error">Грешка при читање резервации</string>
+    <string name="no_bookings">Нема резервации</string>
+    <string name="bookings_updated">Резервациите се ажурирани</string>
+    <string name="default_web_client_id">ТВОЈОТ_WEB_CLIENT_ID</string>
 
 </resources>
