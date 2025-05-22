@@ -15,7 +15,16 @@
         android:label="Закажи" />
 
     <fragment
+        android:id="@+id/myBookingsFragment"
+        android:name="com.example.carwashapp.fragments.MyBookingsFragment"
+        android:label="Мои резервации" />
+
+
+    <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.carwashapp.fragments.ProfileFragment"
         android:label="Профил" />
+
+
+
 </navigation>

@@ -10,7 +10,16 @@
         android:icon="@drawable/ic_calendar" />
 
     <item
+        android:id="@+id/myBookingsFragment"
+        android:icon="@drawable/ic_bookings"
+        android:title="Мои Резервации" />
+
+
+    <item
         android:id="@+id/profileFragment"
         android:title="Профил"
         android:icon="@drawable/ic_profile" />
+
+
+
 </menu>
