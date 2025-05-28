@@ -12,14 +12,14 @@
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="@string/email"
         android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Лозинка"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:minHeight="48dp" />
 
@@ -27,7 +27,7 @@
         android:id="@+id/etConfirmPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Потврди лозинка"
+        android:hint="@string/confirmPassword"
         android:inputType="textPassword"
         android:minHeight="48dp" />
 
@@ -36,6 +36,6 @@
         android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Регистрирај се" />
+        android:text="@string/register" />
 
 </LinearLayout>

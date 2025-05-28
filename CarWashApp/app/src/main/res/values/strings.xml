@@ -14,6 +14,19 @@
     <string name="no_bookings">No bookings</string>
     <string name="bookings_updated">Bookings updated</string>
     <string name="default_web_client_id">YOUR_WEB_CLIENT_ID</string>
+    <string name="facebook_app_id">1582412193146483</string>
+    <string name="google">Sign in with google</string>
+    <string name="facebook">Continue with facebook</string>
+    <string name="guest">Continue as guest</string>
+    <string name="facebook_client_token">68697962c5ae9f8bdd22b15c47227864</string>
+    <string name="change_language">Change Language</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="register">Register</string>
+    <string name="welcome">Welcome to CarWash"</string>
+
 
 
 </resources>

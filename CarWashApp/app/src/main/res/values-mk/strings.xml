@@ -15,5 +15,17 @@
     <string name="no_bookings">Нема резервации</string>
     <string name="bookings_updated">Резервациите се ажурирани</string>
     <string name="default_web_client_id">ТВОЈОТ_WEB_CLIENT_ID</string>
+    <string name="facebook_app_id">1582412193146483</string>
+    <string name="google">Најави се со Google</string>
+    <string name="facebook">Продолжи со Facebook</string>
+    <string name="guest">Продолжи како гостин</string>
+    <string name="facebook_client_token">68697962c5ae9f8bdd22b15c47227864</string>
+    <string name="change_language">Смени јазик</string>
+    <string name="email">Емаил</string>
+    <string name="password">Лозинка</string>
+    <string name="login">Најави се</string>
+    <string name="confirmPassword">Потврди лозинка</string>
+    <string name="register">Регистрирај се</string>
+    <string name="welcome">Добредојдовте на CarWash"</string>
 
 </resources>

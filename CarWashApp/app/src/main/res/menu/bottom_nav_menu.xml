@@ -1,23 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/homeFragment"
-        android:title="Почетна"
+        android:title="@string/home"
         android:icon="@drawable/ic_home" />
 
     <item
         android:id="@+id/bookFragment"
-        android:title="Резервирај"
+        android:title="@string/book"
         android:icon="@drawable/ic_calendar" />
 
     <item
         android:id="@+id/myBookingsFragment"
         android:icon="@drawable/ic_bookings"
-        android:title="Мои Резервации" />
+        android:title="@string/my_bookings" />
 
 
     <item
         android:id="@+id/profileFragment"
-        android:title="Профил"
+        android:title="@string/profile"
         android:icon="@drawable/ic_profile" />
 
 
