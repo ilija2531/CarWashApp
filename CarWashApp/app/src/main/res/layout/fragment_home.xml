@@ -5,7 +5,7 @@
     android:gravity="center">
 
     <TextView
-        android:text="Почетна"
+        android:text="@string/home"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_width="wrap_content"

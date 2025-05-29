@@ -11,14 +11,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Избери датум:"
+            android:text="@string/chooseDate"
             android:paddingBottom="4dp"/>
 
         <Button
             android:id="@+id/btnPickDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Избери датум" />
+            android:text="@string/chooseDate" />
 
         <TextView
             android:id="@+id/tvSelectedDate"
@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Избери време:"
+            android:text="@string/chooseTime"
             android:paddingTop="16dp"
             android:paddingBottom="4dp"/>
 
@@ -38,7 +38,7 @@
             android:id="@+id/btnPickTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Избери време" />
+            android:text="@string/chooseTime" />
 
         <TextView
             android:id="@+id/tvSelectedTime"
@@ -50,7 +50,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Тип на возило:"
+            android:text="@string/carType"
             android:paddingTop="16dp"
             android:paddingBottom="4dp"/>
 
@@ -64,14 +64,14 @@
             android:id="@+id/etNote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Забелешка (опционално)"
+            android:hint="@string/bookmark"
             android:paddingTop="16dp" />
 
         <Button
             android:id="@+id/btnSubmitBooking"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Резервирај"
+            android:text="@string/book"
             android:layout_marginTop="24dp" />
     </LinearLayout>
 </ScrollView>

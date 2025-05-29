@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Авто Перална</string>
-    <string name="logout">Одјава</string>
+    <string name="logout">Одјави се</string>
     <string name="error_loading">Грешка при читање резервации</string>
     <string name="profile">Профил</string>
     <string name="home">Дома</string>
@@ -27,5 +27,13 @@
     <string name="confirmPassword">Потврди лозинка</string>
     <string name="register">Регистрирај се</string>
     <string name="welcome">Добредојдовте на CarWash"</string>
-
+    <string name="chooseDate">Избери датум</string>
+    <string name="chooseTime">Избери време</string>
+    <string name="carType">Тип на возил:</string>
+    <string name="bookmark">Забелешка (опционално)</string>
+    <string name="name">Име и презиме:</string>
+    <string name="date">Дата:</string>
+    <string name="time">Време:</string>
+    <string name="type">Тип:</string>
+    <string name="note">Забелешка:</string>
 </resources>

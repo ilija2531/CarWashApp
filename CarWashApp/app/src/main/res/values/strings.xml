@@ -26,6 +26,15 @@
     <string name="confirmPassword">Confirm Password</string>
     <string name="register">Register</string>
     <string name="welcome">Welcome to CarWash"</string>
+    <string name="chooseDate">Choose a date</string>
+    <string name="chooseTime">Choose a time</string>
+    <string name="carType">Car type:</string>
+    <string name="bookmark">Note (optional)</string>
+    <string name="name">Full name:</string>
+    <string name="date">Date:</string>
+    <string name="time">Time:</string>
+    <string name="type">Type:</string>
+    <string name="note">Note:</string>
 
 
 
