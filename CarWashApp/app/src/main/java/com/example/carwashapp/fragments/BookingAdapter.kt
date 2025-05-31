@@ -6,14 +6,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.carwashapp.R
 import com.example.carwashapp.model.Booking
 
-class BookingAdapter(private val bookings: List<Booking>) :
-    RecyclerView.Adapter<BookingAdapter.BookingViewHolder>() {
+class BookingAdapter(
+    private val bookings: List<Booking>,
+    private val onItemClick: (Booking) -> Unit
+) : RecyclerView.Adapter<BookingAdapter.BookingViewHolder>() {
 
-    class BookingViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class BookingViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvDate: TextView = view.findViewById(R.id.tvDate)
         val tvTime: TextView = view.findViewById(R.id.tvTime)
         val tvVehicle: TextView = view.findViewById(R.id.tvVehicleType)
         val tvNote: TextView = view.findViewById(R.id.tvNote)
+
+        init {
+            view.setOnClickListener {
+                val booking = bookings[adapterPosition]
+                onItemClick(booking)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookingViewHolder {
