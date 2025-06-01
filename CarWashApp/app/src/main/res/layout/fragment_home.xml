@@ -2,8 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    android:background="#FFFFFF">
+    android:background="#F5FBFF"
+    android:padding="24dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,44 +11,62 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <!-- Добредојде -->
+        <!-- Добредојде текст -->
         <TextView
             android:id="@+id/tvWelcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Добредојдовте!"
-            android:textSize="24sp"
+            android:text="Добредојдовте, Алекс!"
+            android:textSize="26sp"
             android:textStyle="bold"
+            android:textColor="#0D47A1"
             android:layout_marginBottom="32dp" />
 
-        <!-- Копче: Закажи термин -->
-        <Button
-            android:id="@+id/btnBookNow"
+        <!-- Картичка: Копчиња -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="📅 Закажи термин"
-            android:layout_marginBottom="16dp" />
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:padding="24dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="4dp"
+            android:backgroundTint="#FFFFFF"
+            android:clipToOutline="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="4dp">
 
-        <!-- Копче: Мои резервации -->
-        <Button
-            android:id="@+id/btnMyBookings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="📋 Мои резервации"
-            android:layout_marginBottom="32dp" />
+            <Button
+                android:id="@+id/btnBookNow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="📅 Закажи термин"
+                android:backgroundTint="#1976D2"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:id="@+id/btnMyBookings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="📋 Мои резервации"
+                android:backgroundTint="#42A5F5"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
 
         <!-- Совет на денот -->
         <TextView
             android:id="@+id/tvTip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#E0F7FA"
             android:text="🚗 Совет на денот:\n„Избегнувајте миење на автомобилот на сонце.“"
-            android:padding="16dp"
             android:textSize="16sp"
-            android:textColor="#000000"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#E0F7FA"
-            android:elevation="2dp" />
+            android:textColor="#212121"
+            android:background="#FFFFFF"
+            android:elevation="2dp"
+            android:padding="16dp"
+            android:backgroundTint="#FFFFFF"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp" />
     </LinearLayout>
 </ScrollView>

@@ -1,18 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="#F5FBFF">
+
 
     <TextView
         android:id="@+id/txtMyBookings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/my_bookings"
-        android:textSize="18sp"
-        android:layout_marginBottom="8dp" />
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#0D47A1"
+        android:layout_marginBottom="16dp" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerBookings"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp"
+        android:scrollbars="vertical"/>
 </LinearLayout>

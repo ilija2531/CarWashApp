@@ -58,6 +58,8 @@ dependencies {
     implementation ("com.google.android.gms:play-services-auth:21.3.0")
     implementation ("com.google.firebase:firebase-auth:23.2.1")
     implementation ("com.facebook.android:facebook-android-sdk:latest.release")
+    implementation ("androidx.cardview:cardview:1.0.0")
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
