@@ -1,3 +1,5 @@
+package com.example.carwashapp.fragments
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,19 +9,23 @@ import com.example.carwashapp.R
 import com.example.carwashapp.model.Booking
 
 class BookingAdapter(
-    private val bookings: List<Booking>,
+    private val bookings: MutableList<Booking>,
     private val onItemClick: (Booking) -> Unit
 ) : RecyclerView.Adapter<BookingAdapter.BookingViewHolder>() {
 
     inner class BookingViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvDate: TextView = view.findViewById(R.id.tvDate)
-        val tvTime: TextView = view.findViewById(R.id.tvTime)
-        val tvVehicle: TextView = view.findViewById(R.id.tvVehicleType)
-        val tvNote: TextView = view.findViewById(R.id.tvNote)
+        private val tvDate: TextView = view.findViewById(R.id.tvDate)
+        private val tvTime: TextView = view.findViewById(R.id.tvTime)
+        private val tvVehicle: TextView = view.findViewById(R.id.tvVehicleType)
+        private val tvNote: TextView = view.findViewById(R.id.tvNote)
 
-        init {
-            view.setOnClickListener {
-                val booking = bookings[adapterPosition]
+        fun bind(booking: Booking) {
+            tvDate.text = "Датум: ${booking.date}"
+            tvTime.text = "Време: ${booking.time}"
+            tvVehicle.text = "Тип: ${booking.vehicleType}"
+            tvNote.text = "Забелешка: ${booking.note}"
+
+            itemView.setOnClickListener {
                 onItemClick(booking)
             }
         }
@@ -31,12 +37,14 @@ class BookingAdapter(
     }
 
     override fun onBindViewHolder(holder: BookingViewHolder, position: Int) {
-        val booking = bookings[position]
-        holder.tvDate.text = "Датум: ${booking.date}"
-        holder.tvTime.text = "Време: ${booking.time}"
-        holder.tvVehicle.text = "Тип: ${booking.vehicleType}"
-        holder.tvNote.text = "Забелешка: ${booking.note}"
+        holder.bind(bookings[position])
     }
 
     override fun getItemCount(): Int = bookings.size
+
+    fun updateData(newBookings: List<Booking>) {
+        bookings.clear()
+        bookings.addAll(newBookings)
+        notifyDataSetChanged()
+    }
 }

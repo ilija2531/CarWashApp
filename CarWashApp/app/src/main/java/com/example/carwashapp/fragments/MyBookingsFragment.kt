@@ -1,7 +1,5 @@
 package com.example.carwashapp.fragments
 
-import BookingAdapter
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
@@ -11,46 +9,64 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carwashapp.R
+import com.example.carwashapp.data.BookingRepository
+import com.example.carwashapp.data.local.AppDatabase
 import com.example.carwashapp.model.Booking
+import com.example.carwashapp.viewmodel.BookingViewModel
+import com.example.carwashapp.viewmodel.BookingViewModelFactory
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.launch
 import java.util.Calendar
 
 class MyBookingsFragment : Fragment(R.layout.fragment_my_bookings) {
 
-    private val db = FirebaseFirestore.getInstance()
-    private val bookings = mutableListOf<Booking>()
     private lateinit var adapter: BookingAdapter
+    private lateinit var viewModel: BookingViewModel
+    private lateinit var userId: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerBookings)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
 
-        db.collection("bookings")
-            .whereEqualTo("userId", userId)
-            .get()
-            .addOnSuccessListener { result ->
-                bookings.clear()
-                for (doc in result) {
-                    val booking = doc.toObject(Booking::class.java)
-                    booking.id = doc.id // важно за бришење/ажурирање
-                    bookings.add(booking)
+        // Init Room + ViewModel
+        val dao = AppDatabase.getInstance(requireContext()).bookingDao()
+        val repository = BookingRepository(dao, FirebaseFirestore.getInstance())
+        val factory = BookingViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory)[BookingViewModel::class.java]
+
+        adapter = BookingAdapter(mutableListOf()) { booking ->
+            showOptionsDialog(booking)
+        }
+
+        recyclerView.adapter = adapter
+
+        lifecycleScope.launch {
+            viewModel.loadBookings(userId)
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.bookings.collect { entities ->
+                val bookings = entities.map {
+                    Booking(
+                        id = it.id,
+                        userId = it.userId,
+                        date = it.date,
+                        time = it.time,
+                        vehicleType = it.vehicleType,
+                        note = it.note
+                    )
                 }
-
-                adapter = BookingAdapter(bookings) { booking ->
-                    showOptionsDialog(booking)
-                }
-
-                recyclerView.adapter = adapter
+                adapter.updateData(bookings)
             }
-            .addOnFailureListener {
-                Toast.makeText(context, "Грешка при читање резервации", Toast.LENGTH_SHORT).show()
-            }
+        }
     }
 
     private fun showOptionsDialog(booking: Booking) {
@@ -66,7 +82,6 @@ class MyBookingsFragment : Fragment(R.layout.fragment_my_bookings) {
             .show()
     }
 
-    @SuppressLint("MissingInflatedId")
     private fun showUpdateDialog(booking: Booking) {
         val inflater = LayoutInflater.from(context)
         val view = inflater.inflate(R.layout.dialog_update_booking, null)
@@ -78,20 +93,18 @@ class MyBookingsFragment : Fragment(R.layout.fragment_my_bookings) {
 
         etDate.setOnClickListener {
             val calendar = Calendar.getInstance()
-            val datePicker = DatePickerDialog(requireContext(), { _, year, month, day ->
-                val dateString = String.format("%02d/%02d/%04d", day, month + 1, year)
-                etDate.setText(dateString)
-            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
-            datePicker.show()
+            DatePickerDialog(requireContext(), { _, year, month, day ->
+                val dateStr = String.format("%02d/%02d/%04d", day, month + 1, year)
+                etDate.setText(dateStr)
+            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
         }
 
         etTime.setOnClickListener {
             val calendar = Calendar.getInstance()
-            val timePicker = TimePickerDialog(requireContext(), { _, hour, minute ->
-                val timeString = String.format("%02d:%02d", hour, minute)
-                etTime.setText(timeString)
-            }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true)
-            timePicker.show()
+            TimePickerDialog(requireContext(), { _, hour, minute ->
+                val timeStr = String.format("%02d:%02d", hour, minute)
+                etTime.setText(timeStr)
+            }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show()
         }
 
         AlertDialog.Builder(requireContext())
@@ -107,16 +120,15 @@ class MyBookingsFragment : Fragment(R.layout.fragment_my_bookings) {
     }
 
     private fun updateBooking(booking: Booking, newDate: String, newTime: String) {
-        db.collection("bookings").document(booking.id!!)
-            .update(mapOf(
-                "date" to newDate,
-                "time" to newTime
-            ))
+        booking.date = newDate
+        booking.time = newTime
+
+        FirebaseFirestore.getInstance()
+            .collection("bookings").document(booking.id!!)
+            .update(mapOf("date" to newDate, "time" to newTime))
             .addOnSuccessListener {
                 Toast.makeText(context, "Успешно ажурирано", Toast.LENGTH_SHORT).show()
-                booking.date = newDate
-                booking.time = newTime
-                adapter.notifyDataSetChanged()
+                viewModel.loadBookings(userId)
             }
             .addOnFailureListener {
                 Toast.makeText(context, "Грешка при ажурирање", Toast.LENGTH_SHORT).show()
@@ -124,12 +136,12 @@ class MyBookingsFragment : Fragment(R.layout.fragment_my_bookings) {
     }
 
     private fun deleteBooking(booking: Booking) {
-        db.collection("bookings").document(booking.id!!)
+        FirebaseFirestore.getInstance()
+            .collection("bookings").document(booking.id!!)
             .delete()
             .addOnSuccessListener {
                 Toast.makeText(context, "Резервацијата е избришана", Toast.LENGTH_SHORT).show()
-                bookings.remove(booking)
-                adapter.notifyDataSetChanged()
+                viewModel.loadBookings(userId)
             }
             .addOnFailureListener {
                 Toast.makeText(context, "Грешка при бришење", Toast.LENGTH_SHORT).show()
