@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">CarWash</string>
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last Name</string>
     <string name="logout">Logout</string>
     <string name="error_loading">Error loading bookings</string>
     <string name="profile">Profile</string>
@@ -30,11 +32,14 @@
     <string name="chooseTime">Choose a time</string>
     <string name="carType">Car type:</string>
     <string name="bookmark">Note (optional)</string>
-    <string name="name">Full name:</string>
+    <string name="name">Full Name: %1$s</string>
+
     <string name="date">Date:</string>
     <string name="time">Time:</string>
     <string name="type">Type:</string>
     <string name="note">Note:</string>
+    <string name="welcome_user">Welcome, %1$s!</string>
+
 
 
 

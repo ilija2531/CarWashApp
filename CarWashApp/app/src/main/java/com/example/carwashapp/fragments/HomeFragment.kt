@@ -1,57 +1,48 @@
 package com.example.carwashapp.fragments
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.example.carwashapp.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class HomeFragment : Fragment(R.layout.fragment_home) {
+class HomeFragment : Fragment() {
 
-    private val auth = FirebaseAuth.getInstance()
-    private val db = FirebaseFirestore.getInstance()
+    private lateinit var tvWelcome: TextView
+    private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        tvWelcome = view.findViewById(R.id.tvWelcome)
+        auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
 
-        val tvWelcome = view.findViewById<TextView>(R.id.tvWelcome)
-        val btnBookNow = view.findViewById<Button>(R.id.btnBookNow)
-        val btnMyBookings = view.findViewById<Button>(R.id.btnMyBookings)
-        val tvTip = view.findViewById<TextView>(R.id.tvTip)
+        loadUserFullName()
 
-        val userId = auth.currentUser?.uid
-        if (userId != null) {
-            db.collection("users").document(userId).get()
-                .addOnSuccessListener { document ->
-                    val fullName = document.getString("fullName") ?: ""
-                    tvWelcome.text = "Добредојдовте, $fullName!"
+        return view
+    }
+
+    private fun loadUserFullName() {
+        val userId = auth.currentUser?.uid ?: return
+
+        db.collection("users").document(userId).get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    val firstName = document.getString("firstName") ?: ""
+                    val lastName = document.getString("lastName") ?: ""
+                    tvWelcome.text = getString(R.string.welcome_user, "$firstName $lastName")
                 }
-        }
-
-
-
-        btnBookNow.setOnClickListener {
-            findNavController().navigate(R.id.bookFragment)
-        }
-
-        btnMyBookings.setOnClickListener {
-            findNavController().navigate(R.id.myBookingsFragment)
-        }
-
-
-        // Совет на денот (може да ротираш)
-        val tips = listOf(
-            "Избегнувајте миење на автомобилот на директно сонце.",
-            "Редовно чистете ја внатрешноста за подобра свежина.",
-            "Користете микрофибер крпа за сушење.",
-            "Проверувајте гумите по секое миење.",
-            "Не заборавајте на миење на тркалата!"
-        )
-        val randomTip = tips.random()
-        tvTip.text = "🚗 Совет на денот:\n„$randomTip“"
+            }
+            .addOnFailureListener {
+                tvWelcome.text = getString(R.string.welcome)
+            }
     }
 }

@@ -8,7 +8,7 @@
     android:background="#F5FBFF"
     tools:context=".fragments.ProfileFragment">
 
-    <!-- Наслов -->
+
     <TextView
         android:id="@+id/txtProfileTitle"
         android:layout_width="wrap_content"

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Авто Перална</string>
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last Name</string>
     <string name="logout">Одјави се</string>
     <string name="error_loading">Грешка при читање резервации</string>
     <string name="profile">Профил</string>
@@ -31,9 +33,10 @@
     <string name="chooseTime">Избери време</string>
     <string name="carType">Тип на возил:</string>
     <string name="bookmark">Забелешка (опционално)</string>
-    <string name="name">Име и презиме:</string>
+    <string name="name">Име и презиме: %1$s</string>
     <string name="date">Дата:</string>
     <string name="time">Време:</string>
     <string name="type">Тип:</string>
     <string name="note">Забелешка:</string>
+    <string name="welcome_user">Добредојдовте, %1$s!</string>
 </resources>

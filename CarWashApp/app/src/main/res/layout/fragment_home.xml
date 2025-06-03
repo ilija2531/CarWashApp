@@ -11,18 +11,18 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <!-- Добредојде текст -->
+
         <TextView
             android:id="@+id/tvWelcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Добредојдовте, Алекс!"
+            android:text="@string/welcome_user"
             android:textSize="26sp"
             android:textStyle="bold"
             android:textColor="#0D47A1"
             android:layout_marginBottom="32dp" />
 
-        <!-- Картичка: Копчиња -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
                 android:id="@+id/btnBookNow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="📅 Закажи термин"
+                android:text="@string/book"
                 android:backgroundTint="#1976D2"
                 android:textColor="#FFFFFF"
                 android:layout_marginBottom="16dp" />
@@ -49,12 +49,12 @@
                 android:id="@+id/btnMyBookings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="📋 Мои резервации"
+                android:text="@string/my_bookings"
                 android:backgroundTint="#42A5F5"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
 
-        <!-- Совет на денот -->
+
         <TextView
             android:id="@+id/tvTip"
             android:layout_width="match_parent"
