@@ -6,8 +6,9 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.carwashapp.R
 import com.example.carwashapp.dashboards.ClientDashboardActivity
-import com.google.firebase.auth.FirebaseAuth
 import com.example.carwashapp.welcome.WelcomeActivity
+import com.google.firebase.auth.FirebaseAuth
+
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
@@ -27,18 +28,18 @@ class LoginActivity : AppCompatActivity() {
             val password = passwordEt.text.toString().trim()
 
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Пополнете ги сите полиња", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(this, "Успешна најава", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.login_successful), Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this, ClientDashboardActivity::class.java))
                         finish()
                     } else {
-                        Toast.makeText(this, "Неуспешна најава: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, getString(R.string.login_failed) + ": ${task.exception?.message}", Toast.LENGTH_LONG).show()
                     }
                 }
         }

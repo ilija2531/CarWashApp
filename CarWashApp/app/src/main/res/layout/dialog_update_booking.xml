@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Одбери нов датум:"
+        android:text="@string/choosenewDate"
         android:textStyle="bold"
         android:textSize="16sp"
         android:layout_marginBottom="8dp" />
@@ -18,7 +18,7 @@
         android:id="@+id/etUpdateDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Датум"
+        android:hint="@string/date"
         android:focusable="false"
         android:clickable="true"
         android:inputType="none"
@@ -29,7 +29,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Одбери ново време:"
+        android:text="@string/choosenewTime"
         android:textStyle="bold"
         android:textSize="16sp"
         android:layout_marginTop="16dp"
@@ -39,7 +39,7 @@
         android:id="@+id/etUpdateTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Време"
+        android:hint="@string/time"
         android:focusable="false"
         android:clickable="true"
         android:inputType="none"

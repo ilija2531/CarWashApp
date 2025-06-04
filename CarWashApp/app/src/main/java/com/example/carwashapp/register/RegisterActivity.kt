@@ -38,12 +38,12 @@ class RegisterActivity : AppCompatActivity() {
             val confirmPassword = confirmPasswordEt.text.toString().trim()
 
             if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-                Toast.makeText(this, "Пополнете ги сите полиња", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.fill_all_fields), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (password != confirmPassword) {
-                Toast.makeText(this, "Лозинките не се совпаѓаат", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.passwords_do_not_match), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -62,16 +62,16 @@ class RegisterActivity : AppCompatActivity() {
                             db.collection("users").document(it)
                                 .set(user)
                                 .addOnSuccessListener {
-                                    Toast.makeText(this, "Успешна регистрација", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, getString(R.string.registration_successful), Toast.LENGTH_SHORT).show()
                                     startActivity(Intent(this, ClientDashboardActivity::class.java))
                                     finish()
                                 }
                                 .addOnFailureListener { e ->
-                                    Toast.makeText(this, "Грешка при зачувување: ${e.message}", Toast.LENGTH_LONG).show()
+                                    Toast.makeText(this, getString(R.string.error_saving_data) + ": ${e.message}", Toast.LENGTH_LONG).show()
                                 }
                         }
                     } else {
-                        Toast.makeText(this, "Неуспешна регистрација: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, getString(R.string.registration_failed) + ": ${task.exception?.message}", Toast.LENGTH_LONG).show()
                     }
                 }
         }

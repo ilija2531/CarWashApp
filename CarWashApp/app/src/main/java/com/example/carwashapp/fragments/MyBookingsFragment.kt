@@ -36,7 +36,6 @@ class MyBookingsFragment : Fragment(R.layout.fragment_my_bookings) {
 
         userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
 
-        // Init Room + ViewModel
         val dao = AppDatabase.getInstance(requireContext()).bookingDao()
         val repository = BookingRepository(dao, FirebaseFirestore.getInstance())
         val factory = BookingViewModelFactory(repository)
@@ -70,9 +69,12 @@ class MyBookingsFragment : Fragment(R.layout.fragment_my_bookings) {
     }
 
     private fun showOptionsDialog(booking: Booking) {
-        val options = arrayOf("Ажурирај", "Избриши")
+        val options = arrayOf(
+            getString(R.string.update),
+            getString(R.string.delete)
+        )
         AlertDialog.Builder(requireContext())
-            .setTitle("Избери опција")
+            .setTitle(getString(R.string.select_option))
             .setItems(options) { _, which ->
                 when (which) {
                     0 -> showUpdateDialog(booking)
@@ -108,14 +110,14 @@ class MyBookingsFragment : Fragment(R.layout.fragment_my_bookings) {
         }
 
         AlertDialog.Builder(requireContext())
-            .setTitle("Ажурирај резервација")
+            .setTitle(getString(R.string.update_booking))
             .setView(view)
-            .setPositiveButton("Зачувај") { _, _ ->
+            .setPositiveButton(getString(R.string.save)) { _, _ ->
                 val newDate = etDate.text.toString()
                 val newTime = etTime.text.toString()
                 updateBooking(booking, newDate, newTime)
             }
-            .setNegativeButton("Откажи", null)
+            .setNegativeButton(getString(R.string.cancel), null)
             .show()
     }
 
@@ -127,11 +129,11 @@ class MyBookingsFragment : Fragment(R.layout.fragment_my_bookings) {
             .collection("bookings").document(booking.id!!)
             .update(mapOf("date" to newDate, "time" to newTime))
             .addOnSuccessListener {
-                Toast.makeText(context, "Успешно ажурирано", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.updated_successfully), Toast.LENGTH_SHORT).show()
                 viewModel.loadBookings(userId)
             }
             .addOnFailureListener {
-                Toast.makeText(context, "Грешка при ажурирање", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.update_failed), Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -140,11 +142,11 @@ class MyBookingsFragment : Fragment(R.layout.fragment_my_bookings) {
             .collection("bookings").document(booking.id!!)
             .delete()
             .addOnSuccessListener {
-                Toast.makeText(context, "Резервацијата е избришана", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.booking_deleted), Toast.LENGTH_SHORT).show()
                 viewModel.loadBookings(userId)
             }
             .addOnFailureListener {
-                Toast.makeText(context, "Грешка при бришење", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.delete_failed), Toast.LENGTH_SHORT).show()
             }
     }
 }

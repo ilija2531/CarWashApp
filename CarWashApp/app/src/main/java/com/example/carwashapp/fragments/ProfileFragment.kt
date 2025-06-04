@@ -22,7 +22,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         nameTextView = view.findViewById(R.id.txtFullName)
         emailTextView = view.findViewById(R.id.txtEmail)
         logoutButton = view.findViewById(R.id.btnLogout)
@@ -32,11 +31,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            emailTextView.text = "Email: ${currentUser.email ?: "Непознат"}"
+            val userEmail = currentUser.email ?: getString(R.string.unknown)
+            emailTextView.text = getString(R.string.email_format, userEmail)
             loadUserFullName(currentUser.uid)
         } else {
-            emailTextView.text = "Email: Непознат"
-            nameTextView.text = "Име и презиме: Непознато"
+            emailTextView.text = getString(R.string.email_format, getString(R.string.unknown))
+            nameTextView.text = getString(R.string.name, getString(R.string.unknown))
         }
 
         logoutButton.setOnClickListener {
@@ -51,16 +51,15 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         db.collection("users").document(userId).get()
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
-                    val firstName = document.getString("firstName") ?: "Непознато"
+                    val firstName = document.getString("firstName") ?: getString(R.string.unknown)
                     val lastName = document.getString("lastName") ?: ""
                     nameTextView.text = getString(R.string.name, "$firstName $lastName")
-
                 } else {
-                    nameTextView.text = "Име и презиме: Непознато"
+                    nameTextView.text = getString(R.string.name, getString(R.string.unknown))
                 }
             }
             .addOnFailureListener {
-                nameTextView.text = "Име и презиме: Грешка при вчитување"
+                nameTextView.text = getString(R.string.name, getString(R.string.load_error))
             }
     }
 }

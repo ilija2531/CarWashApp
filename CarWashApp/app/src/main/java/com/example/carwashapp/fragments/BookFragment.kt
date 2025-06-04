@@ -26,10 +26,8 @@ class BookFragment : Fragment(R.layout.fragment_book) {
         val spinner = view.findViewById<Spinner>(R.id.spinnerVehicleType)
         val etNote = view.findViewById<EditText>(R.id.etNote)
 
-
         val vehicleTypes = resources.getStringArray(R.array.vehicle_types)
         spinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, vehicleTypes)
-
 
         val calendar = Calendar.getInstance()
 
@@ -60,7 +58,7 @@ class BookFragment : Fragment(R.layout.fragment_book) {
             val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return@setOnClickListener
 
             if (!::selectedDate.isInitialized || !::selectedTime.isInitialized) {
-                Toast.makeText(requireContext(), "Изберете датум и време", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.select_date_time), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -76,10 +74,10 @@ class BookFragment : Fragment(R.layout.fragment_book) {
             FirebaseFirestore.getInstance().collection("bookings")
                 .add(booking)
                 .addOnSuccessListener {
-                    Toast.makeText(requireContext(), "Резервацијата е успешно снимена", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.booking_success), Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener {
-                    Toast.makeText(requireContext(), "Грешка при резервација", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.booking_failed), Toast.LENGTH_SHORT).show()
                 }
         }
     }

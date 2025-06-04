@@ -30,6 +30,8 @@
     <string name="welcome">Welcome to CarWash"</string>
     <string name="chooseDate">Choose a date</string>
     <string name="chooseTime">Choose a time</string>
+    <string name="choosenewDate">Choose a new date</string>
+    <string name="choosenewTime">Choose a new time</string>
     <string name="carType">Car type:</string>
     <string name="bookmark">Note (optional)</string>
     <string name="name">Full Name: %1$s</string>
@@ -54,6 +56,31 @@
     <string name="facebook_signin_failed">Facebook sign-in failed</string>
     <string name="facebook_cancelled">Facebook sign-in cancelled</string>
     <string name="guest_login_failed">Unsuccessful guest login</string>
+    <string name="fill_all_fields">Please fill in all fields</string>
+    <string name="passwords_do_not_match">Passwords do not match</string>
+    <string name="registration_successful">Registration successful</string>
+    <string name="error_saving_data">Error saving data</string>
+    <string name="registration_failed">Registration failed</string>
+    <string name="login_successful">Login successful</string>
+    <string name="login_failed">Login failed</string>
+    <string name="select_date_time">Please select date and time</string>
+    <string name="booking_success">Booking saved successfully</string>
+    <string name="booking_failed">Booking failed</string>
+    <string name="unknown">Unknown</string>
+    <string name="load_error">Error loading</string>
+    <string name="email_format">Email: %1$s</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="select_option">Select Option</string>
+    <string name="update_booking">Update Booking</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="updated_successfully">Successfully updated</string>
+    <string name="update_failed">Failed to update</string>
+    <string name="booking_deleted">Booking deleted</string>
+    <string name="delete_failed">Failed to delete</string>
+
+
 
 
 

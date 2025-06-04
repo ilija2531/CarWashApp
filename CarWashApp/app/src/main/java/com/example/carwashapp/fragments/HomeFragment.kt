@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.carwashapp.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -22,10 +24,22 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+
         tvWelcome = view.findViewById(R.id.tvWelcome)
         tvTip = view.findViewById(R.id.tvTip)
+        val btnBookNow = view.findViewById<Button>(R.id.btnBookNow)
+        val btnMyBookings = view.findViewById<Button>(R.id.btnMyBookings)
+
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
+
+        btnBookNow.setOnClickListener {
+            findNavController().navigate(R.id.bookFragment)
+        }
+
+        btnMyBookings.setOnClickListener {
+            findNavController().navigate(R.id.myBookingsFragment)
+        }
 
         loadUserFullName()
         setLocalizedCarTip()
@@ -34,18 +48,35 @@ class HomeFragment : Fragment() {
     }
 
     private fun loadUserFullName() {
-        val userId = auth.currentUser?.uid ?: return
+        val user = auth.currentUser ?: return
+        val userId = user.uid
 
         db.collection("users").document(userId).get()
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
                     val firstName = document.getString("firstName") ?: ""
                     val lastName = document.getString("lastName") ?: ""
-                    tvWelcome.text = getString(R.string.welcome_user, "$firstName $lastName")
+                    val fullName = "$firstName $lastName".trim()
+                    if (fullName.isNotBlank()) {
+                        tvWelcome.text = getString(R.string.welcome_user, fullName)
+                        return@addOnSuccessListener
+                    }
+                }
+
+                val displayName = user.displayName
+                if (!displayName.isNullOrBlank()) {
+                    tvWelcome.text = getString(R.string.welcome_user, displayName)
+                } else {
+                    tvWelcome.text = getString(R.string.welcome)
                 }
             }
             .addOnFailureListener {
-                tvWelcome.text = getString(R.string.welcome)
+                val displayName = user.displayName
+                if (!displayName.isNullOrBlank()) {
+                    tvWelcome.text = getString(R.string.welcome_user, displayName)
+                } else {
+                    tvWelcome.text = getString(R.string.welcome)
+                }
             }
     }
 

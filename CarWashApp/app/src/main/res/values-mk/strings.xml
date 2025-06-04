@@ -31,6 +31,8 @@
     <string name="welcome">Добредојдовте на CarWash"</string>
     <string name="chooseDate">Избери датум</string>
     <string name="chooseTime">Избери време</string>
+    <string name="choosenewDate">Избери нов датум</string>
+    <string name="choosenewTime">Избери ново време</string>
     <string name="carType">Тип на возил:</string>
     <string name="bookmark">Забелешка (опционално)</string>
     <string name="name">Име и презиме: %1$s</string>
@@ -55,4 +57,27 @@
     <string name="facebook_signin_failed">Facebook најава не успеа</string>
     <string name="facebook_cancelled">Facebook најавата е откажана</string>
     <string name="guest_login_failed">Неуспешна најава како гостин</string>
+    <string name="fill_all_fields">Пополнете ги сите полиња</string>
+    <string name="passwords_do_not_match">Лозинките не се совпаѓаат</string>
+    <string name="registration_successful">Успешна регистрација</string>
+    <string name="error_saving_data">Грешка при зачувување</string>
+    <string name="registration_failed">Неуспешна регистрација</string>
+    <string name="login_successful">Успешна најава</string>
+    <string name="login_failed">Неуспешна најава</string>
+    <string name="select_date_time">Изберете датум и време</string>
+    <string name="booking_success">Резервацијата е успешно снимена</string>
+    <string name="booking_failed">Грешка при резервација</string>
+    <string name="unknown">Непознато</string>
+    <string name="load_error">Грешка при вчитување</string>
+    <string name="email_format">Email: %1$s</string>
+    <string name="update">Ажурирај</string>
+    <string name="delete">Избриши</string>
+    <string name="select_option">Избери опција</string>
+    <string name="update_booking">Ажурирај резервација</string>
+    <string name="save">Зачувај</string>
+    <string name="cancel">Откажи</string>
+    <string name="updated_successfully">Успешно ажурирано</string>
+    <string name="update_failed">Грешка при ажурирање</string>
+    <string name="booking_deleted">Резервацијата е избришана</string>
+    <string name="delete_failed">Грешка при бришење</string>
 </resources>

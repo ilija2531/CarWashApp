@@ -25,6 +25,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
 
 class WelcomeActivity : AppCompatActivity() {
 
@@ -52,14 +53,12 @@ class WelcomeActivity : AppCompatActivity() {
 
         ivLanguage.setOnClickListener { showLanguageDialog() }
 
-        // Google Sign-In options
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        // Google sign-in launcher
         val googleSignInLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
@@ -76,7 +75,6 @@ class WelcomeActivity : AppCompatActivity() {
             }
         }
 
-        // Facebook button click
         facebookButton.setOnClickListener {
             LoginManager.getInstance().logInWithReadPermissions(this, listOf("email", "public_profile"))
             LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
@@ -95,8 +93,10 @@ class WelcomeActivity : AppCompatActivity() {
         }
 
         googleButton.setOnClickListener {
-            val signInIntent = googleSignInClient.signInIntent
-            googleSignInLauncher.launch(signInIntent)
+            googleSignInClient.signOut().addOnCompleteListener {
+                val signInIntent = googleSignInClient.signInIntent
+                googleSignInLauncher.launch(signInIntent)
+            }
         }
 
         guestButton.setOnClickListener {
@@ -121,8 +121,7 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun showLanguageDialog() {
-        val currentLang = LocaleHelper.getLanguage(this) // "en" или "mk"
-
+        val currentLang = LocaleHelper.getLanguage(this)
         val languages: Array<String>
         val langCodes: Array<String>
 
@@ -145,12 +144,22 @@ class WelcomeActivity : AppCompatActivity() {
         builder.show()
     }
 
-
     private fun firebaseAuthWithGoogle(account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    val user = firebaseAuth.currentUser
+                    user?.let {
+                        val userData = hashMapOf(
+                            "firstName" to (account.givenName ?: ""),
+                            "lastName" to (account.familyName ?: ""),
+                            "email" to (account.email ?: "")
+                        )
+                        val db = FirebaseFirestore.getInstance()
+                        db.collection("users").document(it.uid).set(userData)
+                    }
+
                     startActivity(Intent(this, ClientDashboardActivity::class.java))
                     finish()
                 } else {
@@ -164,6 +173,20 @@ class WelcomeActivity : AppCompatActivity() {
         firebaseAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    val user = firebaseAuth.currentUser
+                    user?.let {
+                        val nameParts = it.displayName?.split(" ") ?: listOf("")
+                        val firstName = nameParts.getOrElse(0) { "" }
+                        val lastName = nameParts.getOrElse(1) { "" }
+                        val userData = hashMapOf(
+                            "firstName" to firstName,
+                            "lastName" to lastName,
+                            "email" to (it.email ?: "")
+                        )
+                        val db = FirebaseFirestore.getInstance()
+                        db.collection("users").document(it.uid).set(userData)
+                    }
+
                     startActivity(Intent(this, ClientDashboardActivity::class.java))
                     finish()
                 } else {

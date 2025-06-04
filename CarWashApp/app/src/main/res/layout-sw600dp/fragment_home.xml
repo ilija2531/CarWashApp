@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5FBFF"
+    android:padding="48dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/tvWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome_user"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="#0D47A1"
+            android:layout_marginBottom="40dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:padding="32dp"
+            android:layout_marginBottom="32dp"
+            android:elevation="6dp">
+
+            <Button
+                android:id="@+id/btnBookNow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/book"
+                android:backgroundTint="#1976D2"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:layout_marginBottom="24dp" />
+
+            <Button
+                android:id="@+id/btnMyBookings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/my_bookings"
+                android:backgroundTint="#42A5F5"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvTip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/car_tip_label"
+            android:textSize="18sp"
+            android:textColor="#212121"
+            android:background="#FFFFFF"
+            android:elevation="4dp"
+            android:padding="24dp" />
+    </LinearLayout>
+</ScrollView>

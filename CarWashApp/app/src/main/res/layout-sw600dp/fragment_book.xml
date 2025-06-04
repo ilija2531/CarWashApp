@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5FBFF"
+    android:padding="32dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/txtBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/book"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#0D47A1"
+            android:layout_marginBottom="24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chooseDate"
+            android:textSize="18sp"
+            android:textColor="#0D47A1"
+            android:paddingBottom="6dp" />
+
+        <Button
+            android:id="@+id/btnPickDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/chooseDate"
+            android:backgroundTint="#1976D2"
+            android:textColor="#FFFFFF"
+            android:minHeight="56dp" />
+
+        <TextView
+            android:id="@+id/tvSelectedDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:paddingTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chooseTime"
+            android:textSize="18sp"
+            android:textColor="#0D47A1"
+            android:paddingTop="20dp"
+            android:paddingBottom="6dp" />
+
+        <Button
+            android:id="@+id/btnPickTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/chooseTime"
+            android:backgroundTint="#1976D2"
+            android:textColor="#FFFFFF"
+            android:minHeight="56dp" />
+
+        <TextView
+            android:id="@+id/tvSelectedTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:paddingTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/carType"
+            android:textSize="18sp"
+            android:textColor="#0D47A1"
+            android:paddingTop="20dp"
+            android:paddingBottom="6dp" />
+
+        <Spinner
+            android:id="@+id/spinnerVehicleType"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@android:drawable/btn_dropdown" />
+
+        <EditText
+            android:id="@+id/etNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/bookmark"
+            android:backgroundTint="#90CAF9"
+            android:textColorHint="#607D8B"
+            android:padding="16dp"
+            android:textSize="16sp"
+            android:layout_marginTop="20dp" />
+
+        <Button
+            android:id="@+id/btnSubmitBooking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/book"
+            android:backgroundTint="#388E3C"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_marginTop="32dp"
+            android:minHeight="56dp" />
+    </LinearLayout>
+</ScrollView>
