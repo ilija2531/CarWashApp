@@ -13,6 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 class HomeFragment : Fragment() {
 
     private lateinit var tvWelcome: TextView
+    private lateinit var tvTip: TextView
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
@@ -22,10 +23,12 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         tvWelcome = view.findViewById(R.id.tvWelcome)
+        tvTip = view.findViewById(R.id.tvTip)
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
         loadUserFullName()
+        setLocalizedCarTip()
 
         return view
     }
@@ -44,5 +47,14 @@ class HomeFragment : Fragment() {
             .addOnFailureListener {
                 tvWelcome.text = getString(R.string.welcome)
             }
+    }
+
+    private fun setLocalizedCarTip() {
+        val tips = listOf(
+            getString(R.string.tip_1),
+            getString(R.string.tip_2),
+            getString(R.string.tip_3)
+        )
+        tvTip.text = getString(R.string.car_tip_label, tips.random())
     }
 }

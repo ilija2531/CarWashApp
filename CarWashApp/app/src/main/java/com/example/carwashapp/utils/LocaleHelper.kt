@@ -26,5 +26,9 @@ object LocaleHelper {
         config.setLocale(locale)
         return context.createConfigurationContext(config)
     }
+    fun getLanguage(context: Context): String {
+        return context.resources.configuration.locales.get(0).language
+    }
+
 }
 

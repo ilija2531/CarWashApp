@@ -26,9 +26,10 @@ class BookFragment : Fragment(R.layout.fragment_book) {
         val spinner = view.findViewById<Spinner>(R.id.spinnerVehicleType)
         val etNote = view.findViewById<EditText>(R.id.etNote)
 
-        // Spinner items
-        val vehicleTypes = arrayOf("Мал автомобил", "Седан", "Комби", "Џип")
+
+        val vehicleTypes = resources.getStringArray(R.array.vehicle_types)
         spinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, vehicleTypes)
+
 
         val calendar = Calendar.getInstance()
 

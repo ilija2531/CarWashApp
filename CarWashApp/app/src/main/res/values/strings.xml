@@ -33,12 +33,29 @@
     <string name="carType">Car type:</string>
     <string name="bookmark">Note (optional)</string>
     <string name="name">Full Name: %1$s</string>
-
     <string name="date">Date:</string>
     <string name="time">Time:</string>
     <string name="type">Type:</string>
     <string name="note">Note:</string>
     <string name="welcome_user">Welcome, %1$s!</string>
+    <string name="car_tip_label">🚗 Tip of the Day:\n“%1$s”</string>
+    <string name="tip_1">Avoid washing your car under direct sunlight.</string>
+    <string name="tip_2">Use wax to protect your paint.</string>
+    <string name="tip_3">Regular washing prevents buildup of dirt.</string>
+    <string-array name="vehicle_types">
+        <item>Small Car</item>
+        <item>Sedan</item>
+        <item>Van</item>
+        <item>SUV</item>
+    </string-array>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="continue_with_facebook">Continue with Facebook</string>
+    <string name="google_signin_failed">Google sign-in failed</string>
+    <string name="facebook_signin_failed">Facebook sign-in failed</string>
+    <string name="facebook_cancelled">Facebook sign-in cancelled</string>
+    <string name="guest_login_failed">Unsuccessful guest login</string>
+
+
 
 
 

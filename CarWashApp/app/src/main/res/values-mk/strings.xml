@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Авто Перална</string>
-    <string name="firstname">First Name</string>
-    <string name="lastname">Last Name</string>
+    <string name="firstname">Име</string>
+    <string name="lastname">Презиме</string>
     <string name="logout">Одјави се</string>
     <string name="error_loading">Грешка при читање резервации</string>
     <string name="profile">Профил</string>
@@ -39,4 +39,20 @@
     <string name="type">Тип:</string>
     <string name="note">Забелешка:</string>
     <string name="welcome_user">Добредојдовте, %1$s!</string>
+    <string name="car_tip_label">🚗 Совет на денот:\n„%1$s“</string>
+    <string name="tip_1">Избегнувајте миење на автомобилот на сонце.</string>
+    <string name="tip_2">Користете восок за заштита на бојата.</string>
+    <string name="tip_3">Редовното перење спречува насобирање нечистотија.</string>
+    <string-array name="vehicle_types">
+        <item>Мал автомобил</item>
+        <item>Седан</item>
+        <item>Комби</item>
+        <item>Џип</item>
+    </string-array>
+    <string name="sign_in_with_google">Најави се со Google</string>
+    <string name="continue_with_facebook">Продолжи со Facebook</string>
+    <string name="google_signin_failed">Google најава не успеа</string>
+    <string name="facebook_signin_failed">Facebook најава не успеа</string>
+    <string name="facebook_cancelled">Facebook најавата е откажана</string>
+    <string name="guest_login_failed">Неуспешна најава како гостин</string>
 </resources>
